@@ -18,13 +18,15 @@ Affected version:
 
 
 ## Introduction
-### What is SMB
+### What is SMB and what it does?
 [Official defination](https://en.wikipedia.org/wiki/Server_Message_Block) In computer networking, Server Message Block, one version of which was also known as Common Internet File System (CFIS), is a communication protocol for providing shared access to files, printers and serial ports between nodes on a network. It also provides an authenticated inter-process communication (IPC) mechanism
 
+This Protocol enables your devices to communciate with remote computers or servers. It basically lets you share files.
 
-
-### SMBGhost
- This is a type of vulnerability that affects Windows 10 computers and was first reported publicly on 10 March, 2020. This vulnerability allows the attacker to remotely execute the code on the SMB server or client. 
+### What is SMBGhost and what it does? 
+ This is a type of vulnerability that affects Windows 10 computers and was first reported publicly on 10 March, 2020. 
+ 
+ This vulnerability allows the attacker to remotely execute the code on the SMB server or client. 
 
 
 
