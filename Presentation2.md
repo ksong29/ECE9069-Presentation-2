@@ -1,7 +1,7 @@
 # CVE-2020-0796
 
 
-## Abstract
+## Background
 On March 12,2020, Microsoft confirmed that a critical vulnerability affecting the SMBv3 (Server Message Block 3.1.1) protocol associated with its latest version of Windows 10 and it has a case number: CVE-2020-0796. This is known as SMBGhosting in Windows 10 OS. 
 -	date discovered: 2019-4-11 by Zecops Research Team
 -	date patched: 2020-10-3 by Microsoft 
