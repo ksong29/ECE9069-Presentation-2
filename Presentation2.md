@@ -40,7 +40,7 @@ SMB version
 -	SMBv2: By Microsoft, Boosted performance
 -	SMBv3: Increased Security
 
-
+![download](https://user-images.githubusercontent.com/25041906/111921659-15191b00-8a6c-11eb-9c72-2afd91c12c3f.jpg)
 The infamous WannaCry ransomware was an exploit of a vulnerability in SMB version one.
 It infected hundreds of thousands of computers and encrypted their data. Users have to pay in Bitcoin to get their data back. 
 
