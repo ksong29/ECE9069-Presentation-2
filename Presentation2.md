@@ -168,6 +168,8 @@ Command - Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\Lanman
 
 
 ### Conclusion 
+This is a CVE-2020-0796 case study, which refers to SMBGhost vulnerability on windows OS. The decompress function has the potential to cause the integer overflow because of it does not check the legality of the original packet size. Fortunately, there is no real hack activities found because of this vulnerability by now, and Microsoft has already fixed the vulnerability in various methods.
+
 
 
 ### Resources
