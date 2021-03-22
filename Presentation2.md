@@ -57,11 +57,9 @@ The below POC created by zecops research team illustrates how the bug can be exp
 
 
 ### Create a simple packet header 
-Creating a network packet is one of the main features of Scapy. Initially, I will create a simplest header of a packet, which only contains source ip address and destination ip address. 
-
+Creating a network packet is one of the main features of Scapy. Initially, I will create a simplest header of a packet, which only contains source ip address and destination ip address.                                           
  
-                                              
-typedef struct _COMPRESSION_TRANSFORM_HEADER
+    typedef struct _COMPRESSION_TRANSFORM_HEADER
 {
     ULONG ProtocolId;
     ULONG OriginalCompressedSegmentSize;
@@ -85,7 +83,6 @@ NTSTATUS Srv2DecompressData(PCOMPRESSION_TRANSFORM_HEADER Header, SIZE_T TotalSi
     If (!Alloc) {
         return STATUS_INSUFFICIENT_RESOURCES;
     }
- 
     ULONG FinalCompressedSize = 0;
  
     NTSTATUS Status = SmbCompressionDecompress(
