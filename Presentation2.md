@@ -155,10 +155,11 @@ And when the SMB decompressed the header, it will crash the windows system at th
 
 But if we keep trying the exploit several times, we can get the system/authority privilege.
 
-![get the root privilege](start.png)
+![CVE-2020-0796-Privilege-Escalation-POC-original](https://user-images.githubusercontent.com/59459399/111933400-c7b1a380-8a95-11eb-9060-a7f851beeb16.gif)
 
 
-The whole stack buffer overflow source code refer to zecops research team at https://github.com/ZecOps/CVE-2020-0796-LPE-POC
+
+[The whole stack buffer overflow source code refer to zecops research team] (https://github.com/ZecOps/CVE-2020-0796-LPE-POC)
 
 
 ### Mitigating SMB Ghosting Attacks
