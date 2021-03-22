@@ -145,7 +145,7 @@ And when the SMB decompressed the header, it will crash the windows system at th
 ![blue screen of death](https://user-images.githubusercontent.com/59459399/111933682-545c6180-8a96-11eb-8095-cea3bfcd5999.png)
 
 
-But if we keep trying the exploit several times, we can get the system/authority privilege.
+But if we keep trying the exploit several times, we can get the system/authority privilege. Below is the demo from the ZECOPS research team to demonstrate how they get the system privilege at the end.
 
 ![CVE-2020-0796-Privilege-Escalation-POC-original](https://user-images.githubusercontent.com/59459399/111933400-c7b1a380-8a95-11eb-9060-a7f851beeb16.gif)
 
