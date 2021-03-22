@@ -153,7 +153,7 @@ Overall, the code sends a customized token to a windows specific version of the 
 
 If you are interested in the entire part of the source code on this vulnerability exploit, please check the link below.
 
-[The whole stack buffer overflow source code refer to zecops research team] (https://github.com/ZecOps/CVE-2020-0796-LPE-POC)
+[The whole stack buffer overflow source code refer to zecops research team](https://github.com/ZecOps/CVE-2020-0796-LPE-POC)
 
 
 ## Mitigating SMB Ghosting Attacks
