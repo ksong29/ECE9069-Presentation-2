@@ -60,31 +60,32 @@ The below POC created by zecops research team illustrates how the bug can be exp
 Creating a network packet is one of the main features of Scapy. Initially, I will create a simplest header of a packet, which only contains source ip address and destination ip address.                                           
  
     typedef struct _COMPRESSION_TRANSFORM_HEADER
-{
-    ULONG ProtocolId;
-    ULONG OriginalCompressedSegmentSize;
-    USHORT CompressionAlgorithm;
-    USHORT Flags;
-    ULONG Offset;
-} COMPRESSION_TRANSFORM_HEADER, *PCOMPRESSION_TRANSFORM_HEADER;
+    {
+      ULONG ProtocolId;
+      ULONG OriginalCompressedSegmentSize;
+      USHORT CompressionAlgorithm;
+      USHORT Flags;
+      ULONG Offset;
+    } COMPRESSION_TRANSFORM_HEADER, *PCOMPRESSION_TRANSFORM_HEADER;
  
-typedef struct _ALLOCATION_HEADER
-{
-    // ...
-    PVOID UserBuffer;
-    // ...
-} ALLOCATION_HEADER, *PALLOCATION_HEADER;
+
+    typedef struct _ALLOCATION_HEADER 
+    {
+      // ...
+      PVOID UserBuffer;
+      // ...
+    }  ALLOCATION_HEADER, *PALLOCATION_HEADER;
  
-NTSTATUS Srv2DecompressData(PCOMPRESSION_TRANSFORM_HEADER Header, SIZE_T TotalSize)
-{
-    PALLOCATION_HEADER Alloc = SrvNetAllocateBuffer(
+    NTSTATUS Srv2DecompressData(PCOMPRESSION_TRANSFORM_HEADER Header, SIZE_T TotalSize)
+    {
+         PALLOCATION_HEADER Alloc = SrvNetAllocateBuffer(
         (ULONG)(Header->OriginalCompressedSegmentSize + Header->Offset),
         NULL);
     If (!Alloc) {
         return STATUS_INSUFFICIENT_RESOURCES;
     }
+    
     ULONG FinalCompressedSize = 0;
- 
     NTSTATUS Status = SmbCompressionDecompress(
         Header->CompressionAlgorithm,
         (PUCHAR)Header + sizeof(COMPRESSION_TRANSFORM_HEADER) + Header->Offset,
