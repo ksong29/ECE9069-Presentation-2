@@ -145,11 +145,13 @@ And when the SMB decompressed the header, it will crash the windows system at th
 
 
 But if we keep trying the exploit several times, we can get the system/authority privilege.
+
 ![CVE-2020-0796-Privilege-Escalation-POC-original](https://user-images.githubusercontent.com/59459399/111933400-c7b1a380-8a95-11eb-9060-a7f851beeb16.gif)
 
 Overall, the code sends a customized token to a windows specific version of the system, then the windows os will received and decompressed the packet like we mentioned above. Sometimes, we could get a blue screen of death, but don’t worry, the this protection is not stable, if we are patient and retry a couple of times, it will finally not crash and give us what we want. As showing in this little demo here, we eventually get the system privilege. 
 
-If you are interested in the entire part of the source code on this vulnerability exploit, please check the link below. 
+If you are interested in the entire part of the source code on this vulnerability exploit, please check the link below.
+
 [The whole stack buffer overflow source code refer to zecops research team] (https://github.com/ZecOps/CVE-2020-0796-LPE-POC)
 
 
@@ -170,9 +172,13 @@ Command - Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\Lanman
 
 ### Resources
 [ Security vuknerability ](https://en.wikipedia.org/wiki/SMBGhost_(security_vulnerability))
+
 [ SMB protocol ](https://www.youtube.com/watch?v=csocwMe7l_E)
+
 [ Vulnerability exploit by Jiansiting](https://www.exploit-db.com/docs/4961)
+
 [Vulnerability analysis by ZECOPS Research Team](https://blog.zecops.com/vulnerabilities/exploiting-smbghost-cve-2020-0796-for-a-local-privilege-escalation-writeup-and-poc/)
+
 [real example](https://www.aljazeera.com/economy/2020/11/26/crypto-boom-shaken-as-bitcoin-plunges-along-with-other-coins)
 
 
