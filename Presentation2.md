@@ -59,8 +59,8 @@ The below POC created by zecops research team illustrates how the bug can be exp
 ### Create a simple packet header 
 Creating a network packet is one of the main features of Scapy. Initially, I will create a simplest header of a packet, which only contains source ip address and destination ip address. 
 
-
->>>                                               
+ 
+                                              
 typedef struct _COMPRESSION_TRANSFORM_HEADER
 {
     ULONG ProtocolId;
@@ -110,7 +110,6 @@ NTSTATUS Srv2DecompressData(PCOMPRESSION_TRANSFORM_HEADER Header, SIZE_T TotalSi
     Srv2ReplaceReceiveBuffer(some_session_handle, Alloc);
     return STATUS_SUCCESS;
 }
->>>
 
 
 By comparing line 20 (size + offet) and line 31 (size - offset), we can easily know that the buffer overflowed by executing this function. So If the offset is not zero, it triggers an additional integer overflow by three steps, allocate, decompress and copy. As a result, the memory allocation is shown in the picture below.
