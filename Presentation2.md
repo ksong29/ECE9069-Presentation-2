@@ -112,7 +112,7 @@ Creating a network packet is one of the main features of Scapy. Initially, I wil
 
 By comparing line 20 (size + offet) and line 31 (size - offset), we can easily know that the buffer overflowed by executing this function. So If the offset is not zero, it triggers an additional integer overflow by three steps, allocate, decompress and copy. As a result, the memory allocation is shown in the picture below.
 
-![Srv2DecompressData function](https://www.google.com/search?q=Srv2DecompressData&rlz=1C5CHFA_enCA919CA919&sxsrf=ALeKk03wKnRn0j00hxWl75aBvq5trvRMCQ:1616359135729&source=lnms&tbm=isch&sa=X&ved=2ahUKEwir7fSAn8LvAhWfGVkFHY8DBcMQ_AUoAnoECAEQBA&biw=1920&bih=976#imgrc=orKq2sACNF39NM&imgdii=lzwKxoCYwmreCM)
+![Srv2DecompressData function]()
 
 
 Whether or not the copy step is going to be executed, we already triggered the overflow since we changed the allocated size to be smaller than it actually needed. Thus, we are able to overflow any size of the content.
@@ -155,7 +155,7 @@ And when the SMB decompressed the header, it will crash the windows system at th
 But if we keep trying the exploit several times, we can get the system/authority privilege.
 
 ![get the root privilege](start.png)
-![get the root privilege](end.png)
+
 
 The whole stack buffer overflow source code refer to zecops research team at https://github.com/ZecOps/CVE-2020-0796-LPE-POC
 
