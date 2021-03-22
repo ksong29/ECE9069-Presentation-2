@@ -112,7 +112,8 @@ Creating a network packet is one of the main features of Scapy. Initially, I wil
 
 By comparing line 20 (size + offet) and line 31 (size - offset), we can easily know that the buffer overflowed by executing this function. So If the offset is not zero, it triggers an additional integer overflow by three steps, allocate, decompress and copy. As a result, the memory allocation is shown in the picture below.
 
-![Srv2DecompressData function]()
+![overflow](https://user-images.githubusercontent.com/59459399/111933279-7f928100-8a95-11eb-8d37-50a8d892b201.png)
+
 
 
 Whether or not the copy step is going to be executed, we already triggered the overflow since we changed the allocated size to be smaller than it actually needed. Thus, we are able to overflow any size of the content.
