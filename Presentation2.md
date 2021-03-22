@@ -50,7 +50,7 @@ It infected hundreds of thousands of computers and encrypted their data. Users h
 
 
 
-## Vulnerability POC
+## Vulnerability POC (proof of concept)
 The vulnerability exits because SMB does not handle the compressed network packets properly. In particular, the Srv2DecompressData function is called to decompress the packet, but it does not validate the original compressed size (originalCompressedSegmentSize + Offset) of the packet header. Therefore, a small amount of the additional memory for offset address is copied in the kernel memory. No surprisingly, the bug can be used to cause overflow to gain higher local privileges.
 The below POC created by zecops research team illustrates how the bug can be exploited remotely without authentication by causing a blue screen of death.This is a simplified version of the function below.                                           
  
