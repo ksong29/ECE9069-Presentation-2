@@ -155,11 +155,11 @@ If you are interested in the entire part of the source code on this vulnerabilit
 [The whole stack buffer overflow source code refer to zecops research team] (https://github.com/ZecOps/CVE-2020-0796-LPE-POC)
 
 
-### Mitigating SMB Ghosting Attacks
+## Mitigating SMB Ghosting Attacks
 There are several entities and organizations at risk of this attack:
 Small and large government entities, Large and small business entities, and home users.
 
-#### There are 3 main methods of preventing SMB Ghosting Attacks
+### There are 3 main methods of preventing SMB Ghosting Attacks
 Method 1: Involves using the Windows Update program to install the new security updates or cumulative updates released in March 2020.
 Method 2: Visiting the official Microsoft website to download the SMB Ghosting security patch which would be the service stack update KB4541338, cumulative update KB4551762.
 Method 3: This is a workaround provided by Microsoft which is not a Recommended solution as it does not Prevent the Exploitation, It Just Disables the SMBv3 Compression.
@@ -167,12 +167,12 @@ Execute this command in PowerShell:
 Command - Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters" DisableCompression -Type DWORD -Value 1 -Force
 
 
-### Conclusion 
+## Conclusion 
 This is a CVE-2020-0796 case study, which refers to SMBGhost vulnerability on windows OS. The decompress function has the potential to cause the integer overflow because of it does not check the legality of the original packet size. Fortunately, there is no real hack activities found because of this vulnerability by now, and Microsoft has already fixed the vulnerability in various methods.
 
 
 
-### Resources
+## Resources
 [ Security vuknerability ](https://en.wikipedia.org/wiki/SMBGhost_(security_vulnerability))
 
 [ SMB protocol ](https://www.youtube.com/watch?v=csocwMe7l_E)
