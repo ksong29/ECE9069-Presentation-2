@@ -52,12 +52,7 @@ It infected hundreds of thousands of computers and encrypted their data. Users h
 
 ## Vulnerability POC
 The vulnerability exits because SMB does not handle the compressed network packets properly. In particular, the Srv2DecompressData function is called to decompress the packet, but it does not validate the original compressed size (originalCompressedSegmentSize + Offset) of the packet header. Therefore, a small amount of the additional memory for offset address is copied in the kernel memory. No surprisingly, the bug can be used to cause overflow to gain higher local privileges.
-The below POC created by zecops research team illustrates how the bug can be exploited remotely without authentication by causing a blue screen of death.This is a simplified version of the function below
-
-
-
-###  vulnerability root causes
-Creating a network packet is one of the main features of Scapy. Initially, I will create a simplest header of a packet, which only contains source ip address and destination ip address.                                           
+The below POC created by zecops research team illustrates how the bug can be exploited remotely without authentication by causing a blue screen of death.This is a simplified version of the function below.                                           
  
     typedef struct _COMPRESSION_TRANSFORM_HEADER
     {
@@ -109,16 +104,12 @@ Creating a network packet is one of the main features of Scapy. Initially, I wil
     return STATUS_SUCCESS;
 }
 
+We can compare line 20, which is in the memory allocation function and line 31 inside the data decompressed function. Line 20 is original size + header offset and line 31 is minus offset. On the other hand, there is not any functions to check the size legality of the packet. 
 
-By comparing line 20 (size + offet) and line 31 (size - offset), we can easily know that the buffer overflowed by executing this function. So If the offset is not zero, it triggers an additional integer overflow by three steps, allocate, decompress and copy. As a result, the memory allocation is shown in the picture below.
 
 ![overflow](https://user-images.githubusercontent.com/59459399/111933279-7f928100-8a95-11eb-8d37-50a8d892b201.png)
 
-
-
-Whether or not the copy step is going to be executed, we already triggered the overflow since we changed the allocated size to be smaller than it actually needed. Thus, we are able to overflow any size of the content.
-This could be a crucial vulnerability because we can use this to crash a specific windows system by an IP address.  The code below was created by ZECOPS research team, which customized a network packet header size and set up the offset in a token and exploit the vulnerability. The core part of the source code is shown as below.
-
+Whether or not the copy step is going to be executed, we can trigger the overflow since we changed the allocated size to be smaller than it actually needed.   
 
 
 ### Vulnerability Exploit
@@ -154,11 +145,11 @@ And when the SMB decompressed the header, it will crash the windows system at th
 
 
 But if we keep trying the exploit several times, we can get the system/authority privilege.
-
 ![CVE-2020-0796-Privilege-Escalation-POC-original](https://user-images.githubusercontent.com/59459399/111933400-c7b1a380-8a95-11eb-9060-a7f851beeb16.gif)
 
+Overall, the code sends a customized token to a windows specific version of the system, then the windows os will received and decompressed the packet like we mentioned above. Sometimes, we could get a blue screen of death, but don’t worry, the this protection is not stable, if we are patient and retry a couple of times, it will finally not crash and give us what we want. As showing in this little demo here, we eventually get the system privilege. 
 
-
+If you are interested in the entire part of the source code on this vulnerability exploit, please check the link below. 
 [The whole stack buffer overflow source code refer to zecops research team] (https://github.com/ZecOps/CVE-2020-0796-LPE-POC)
 
 
@@ -180,3 +171,8 @@ Command - Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\Lanman
 ### Resources
 [ Security vuknerability ](https://en.wikipedia.org/wiki/SMBGhost_(security_vulnerability))
 [ SMB protocol ](https://www.youtube.com/watch?v=csocwMe7l_E)
+[ Vulnerability exploit by Jiansiting](https://www.exploit-db.com/docs/4961)
+[Vulnerability analysis by ZECOPS Research Team](https://blog.zecops.com/vulnerabilities/exploiting-smbghost-cve-2020-0796-for-a-local-privilege-escalation-writeup-and-poc/)
+[real example](https://www.aljazeera.com/economy/2020/11/26/crypto-boom-shaken-as-bitcoin-plunges-along-with-other-coins)
+
+
